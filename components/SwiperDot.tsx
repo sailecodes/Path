@@ -7,7 +7,7 @@ interface SwiperDotProps {
 const SwiperDot = ({ isActive }: SwiperDotProps) => {
   return (
     <View
-      className={`${isActive ? "bg-gray-500" : "bg-gray-300"} w-[40] h-[5] mx-1 rounded-full`}
+      className={`${isActive ? "bg-neutral-500" : "bg-neutral-300"} w-[40] h-[5] mx-1 rounded-full`}
     />
   );
 };

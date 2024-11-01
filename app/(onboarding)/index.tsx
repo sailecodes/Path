@@ -1,22 +1,14 @@
 import Swiper from "react-native-swiper";
-import { useRef } from "react";
-import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { useRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SwiperDot from "@/components/SwiperDot";
-
-interface CustomButtonProps {
-  btnText: string;
-}
-
-const CustomButton = ({ btnText }: CustomButtonProps) => {
-  return <TouchableOpacity className="bg-blue-500 h-[50px] w-10">{btnText}</TouchableOpacity>;
-};
+import CustomButton from "@/components/CustomButton";
+import OnboardingPage from "@/components/OnboardingPage";
+import { onboardingData } from "@/constants";
 
 const Onboarding = () => {
   const swiperRef = useRef<Swiper>(null);
-
-  // FIXME: Temporary
-  const data = [1, 2, 3];
+  const [swiperInd, setSwiperInd] = useState(0);
 
   return (
     <SafeAreaView className="flex flex-1 items-center">
@@ -24,12 +16,19 @@ const Onboarding = () => {
         ref={swiperRef}
         dot={<SwiperDot />}
         activeDot={<SwiperDot isActive />}
-        loop={false}>
-        {data.map((_, ind) => (
-          <Text key={ind}>{ind}</Text>
+        loop={false}
+        onIndexChanged={() => setSwiperInd(swiperInd + 1)}>
+        {onboardingData.map((obj, ind) => (
+          <OnboardingPage
+            primaryText={obj.primaryText}
+            secondaryText={obj.secondaryText}
+          />
         ))}
       </Swiper>
-      <CustomButton />
+      <CustomButton
+        btnText="Next"
+        isPrimary
+      />
     </SafeAreaView>
   );
 };
