@@ -1,35 +1,51 @@
-import { Image, ImageProps, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
-import CustomText from "./CustomText";
+import {
+  GestureResponderEvent,
+  Image,
+  ImageSourcePropType,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-type CustomButtonProps = ImageProps &
-  TouchableOpacityProps & {
-    isPrimary?: boolean;
-    children: React.ReactNode;
-  };
+interface CustomButtonProps {
+  className?: string;
+  isPrimary?: boolean;
+  isIcon?: boolean;
+  btnText?: string;
+  imgSrc?: ImageSourcePropType;
+  onPress?: ((event: GestureResponderEvent) => void) | undefined;
+}
 
-const CustomButton = ({ isPrimary, children, source, ...props }: CustomButtonProps) => {
+const CustomButton = ({
+  className,
+  isPrimary,
+  isIcon,
+  btnText,
+  imgSrc,
+  onPress,
+}: CustomButtonProps) => {
   return (
-    // <View className={`w-full px-5`}>
-    <View className={`w-full`}>
+    <View className={`h-[55px] ${isIcon && "w-[80px]"} ${className}`}>
       <TouchableOpacity
-        className={`flex flex-row justify-center items-center h-[50px] border rounded-full
+        onPress={onPress}
+        className={`flex-1 flex-row justify-center items-center border rounded-lg
         ${
           isPrimary
             ? "bg-blue-500 border-blue-500 shadow-md shadow-blue-500/30"
-            : "bg-white border-neutral-200"
-        }`}
-        {...props}>
-        {source && (
+            : "bg-neutral-100 border-neutral-200"
+        }`}>
+        {imgSrc && (
           <Image
             className="w-[30px]"
-            source={source}
+            source={imgSrc}
             resizeMode="contain"
           />
         )}
-        <CustomText
-          className={`font-JakartaBold text-xl ${isPrimary ? "text-white" : "text-black"}`}>
-          {children}
-        </CustomText>
+        {btnText && (
+          <Text className={`font-JakartaBold text-xl ${isPrimary && "text-neutral-100"}`}>
+            {btnText}
+          </Text>
+        )}
       </TouchableOpacity>
     </View>
   );
