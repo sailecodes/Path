@@ -13,6 +13,15 @@ const Onboarding = () => {
   const swiperRef = useRef<Swiper>(null);
   const [swiperInd, setSwiperInd] = useState(0);
 
+  const onSwiperBtnPress = () => {
+    if (swiperInd === onboardingData.length - 1) {
+      router.navigate("/(onboarding)/sign-up");
+    } else {
+      setSwiperInd(swiperInd + 1);
+      swiperRef.current?.scrollBy(1);
+    }
+  };
+
   return (
     <SafeAreaView className="flex flex-1 items-center">
       <TouchableOpacity
@@ -35,17 +44,14 @@ const Onboarding = () => {
         ))}
       </Swiper>
       <CustomButton
-        btnText={swiperInd === onboardingData.length - 1 ? "Get started" : "Next"}
         isPrimary
-        onPress={() => {
-          if (swiperInd === onboardingData.length - 1) {
-            router.navigate("/(onboarding)/sign-up");
-          } else {
-            setSwiperInd(swiperInd + 1);
-            swiperRef.current?.scrollBy(1);
-          }
-        }}
-      />
+        onPress={onSwiperBtnPress}>
+        {swiperInd === onboardingData.length - 1 ? (
+          <CustomText>Get started</CustomText>
+        ) : (
+          <CustomText>Next</CustomText>
+        )}
+      </CustomButton>
     </SafeAreaView>
   );
 };
