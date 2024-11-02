@@ -1,6 +1,6 @@
 // FIXME:
 
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import CustomText from "./CustomText";
 
 interface OnboardingPageProps {
@@ -8,14 +8,14 @@ interface OnboardingPageProps {
   secondaryText?: string;
 }
 
-const OnboardingPage = ({ primaryText, secondaryText }) => {
+const OnboardingPage = ({ primaryText, secondaryText }: OnboardingPageProps) => {
   return (
     <View className="flex-1 justify-center items-center px-5">
       <CustomText
-        className={`font-JakartaExtraBold ${
+        className={`${
           secondaryText
-            ? "text-blue-600 text-6xl tracking-[-3px]"
-            : "text-neutral-800 text-4xl text-center"
+            ? "font-JakartaBold text-blue-600 text-6xl tracking-[-3px]"
+            : "font-JakartaSemiBold text-neutral-800 text-4xl  text-center"
         }`}>
         {primaryText}
       </CustomText>

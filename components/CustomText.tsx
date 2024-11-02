@@ -7,7 +7,7 @@ interface CustomTextProps {
 }
 
 const CustomText = ({ className, hasDefaultFont, children }: CustomTextProps) => {
-  return <Text className={`${hasDefaultFont ? "font-Jakarta" : ""} ${className}`}>{children}</Text>;
+  return <Text className={`${hasDefaultFont && "font-Jakarta"} ${className}`}>{children}</Text>;
 };
 
 export default CustomText;
