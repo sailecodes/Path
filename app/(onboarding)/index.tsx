@@ -26,7 +26,7 @@ const Onboarding = () => {
       <TouchableOpacity
         className="self-end pl-5 pb-5 mt-5 mr-5"
         onPress={() => router.navigate("/(onboarding)/sign-up")}>
-        <Text className="top-[-5px] font-JakartaMedium text-lg">Skip</Text>
+        <Text className="top-[-5px] text-neutral-800 font-JakartaMedium text-lg">Skip</Text>
       </TouchableOpacity>
       <Swiper
         ref={swiperRef}
@@ -44,7 +44,7 @@ const Onboarding = () => {
         ))}
       </Swiper>
       <CustomButton
-        className="mx-5"
+        className="mx-5 mb-6"
         btnText={`${swiperInd === onboardingData.length - 1 ? "Get started" : "Next"}`}
         isPrimary
         onPress={onSwiperBtnPress}
