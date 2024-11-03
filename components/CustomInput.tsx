@@ -6,7 +6,7 @@ const CustomInput = ({ ...props }: TextInputProps) => {
 
   return (
     <TextInput
-      className={`bg-blue-100 font-JakartaMedium h-[60px] text-lg p-5 mx-5 border-2 border-blue-100 rounded-lg ${
+      className={`bg-blue-100 font-JakartaMedium h-[60px] text-lg px-5 mx-5 border-2 border-blue-100 rounded-lg ${
         isFocused ? "border-blue-600" : "border-blue-100"
       }`}
       onPress={() => setIsFocused(true)}

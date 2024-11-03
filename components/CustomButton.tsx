@@ -25,7 +25,7 @@ const CustomButton = ({
   onPress,
 }: CustomButtonProps) => {
   return (
-    <View className={`h-[55px] ${isIcon && "w-[80px]"} ${className}`}>
+    <View className={`h-[55] ${isIcon && "w-[80]"} ${className}`}>
       <TouchableOpacity
         onPress={onPress}
         className={`flex-1 flex-row justify-center items-center border rounded-lg
@@ -36,7 +36,7 @@ const CustomButton = ({
         }`}>
         {imgSrc && (
           <Image
-            className="w-[30px]"
+            className="w-[30] h-[30]"
             source={imgSrc}
             resizeMode="contain"
           />
