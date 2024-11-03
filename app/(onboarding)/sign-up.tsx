@@ -17,14 +17,13 @@ const SignUp = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleSignUp = async () => {
-    // const { error } = await supabase.auth.signUp({
-    //   email: email,
-    //   password: password,
-    // });
+    const { error } = await supabase.auth.signUp({
+      email: email,
+      password: password,
+    });
 
-    // if (error) Alert.alert(error.message);
-    // else setIsModalVisible(true);
-    setIsModalVisible(true);
+    if (error) Alert.alert(error.message);
+    else setIsModalVisible(true);
   };
 
   const handleResendOtp = async () => {
@@ -43,7 +42,7 @@ const SignUp = () => {
     if (error) {
       Alert.alert(error.message);
     } else {
-      setIsModalVisible(true);
+      setIsModalVisible(false);
       router.navigate("/(root)");
     }
   };
@@ -120,7 +119,7 @@ const SignUp = () => {
           <CustomInput
             className="text-center mb-5"
             placeholder="Code"
-            // keyboardType="numeric"
+            keyboardType="numeric"
             value={token}
             onChangeText={(text) => setToken(text)}
           />
