@@ -3,9 +3,9 @@ import { useRef, useState } from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
-import SwiperDot from "@/components/SwiperDot";
-import CustomButton from "@/components/CustomButton";
-import OnboardingPage from "@/components/OnboardingPage";
+import SwiperDot from "@/components/swiper-dot";
+import CustomButton from "@/components/custom-button";
+import OnboardingPage from "@/components/onboarding-page";
 import { onboardingData } from "@/constants";
 
 const Onboarding = () => {

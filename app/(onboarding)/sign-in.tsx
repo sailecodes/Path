@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Alert, KeyboardAvoidingView, Platform, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
-import CustomInput from "@/components/CustomInput";
-import CustomButton from "@/components/CustomButton";
+import CustomInput from "@/components/custom-input";
+import CustomButton from "@/components/custom-button";
 import { icons } from "@/constants/icons";
 import { supabase } from "@/lib/supabase";
 
@@ -18,7 +18,7 @@ const SignIn = () => {
     });
 
     if (error) Alert.alert(error.message);
-    else router.navigate("/(root)");
+    else router.navigate("/(root)/(tabs)/home");
   }
 
   return (

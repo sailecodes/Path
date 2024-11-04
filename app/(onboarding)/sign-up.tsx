@@ -3,8 +3,8 @@ import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Alert, KeyboardAvoidingView, Platform, Text, TouchableOpacity, View } from "react-native";
 import { router } from "expo-router";
-import CustomInput from "@/components/CustomInput";
-import CustomButton from "@/components/CustomButton";
+import CustomInput from "@/components/custom-input";
+import CustomButton from "@/components/custom-button";
 import { icons } from "@/constants/icons";
 import { supabase } from "@/lib/supabase";
 
@@ -81,12 +81,26 @@ const SignUp = () => {
           onChangeText={(text) => setPassword(text)}
         />
       </KeyboardAvoidingView>
-      <CustomButton
-        className="mb-5 mx-5"
-        isPrimary
-        btnText="Sign up"
-        onPress={handleSignUp}
-      />
+      <View className="flex-row justify-evenly gap-5 mb-5 mx-5">
+        {/* <CustomButton
+          className="mb-5 mx-5"
+          isPrimary
+          btnText="Sign up"
+          onPress={handleSignUp}
+        /> */}
+        <CustomButton
+          className="flex-1"
+          isPrimary
+          btnText="Sign up"
+          onPress={handleSignUp}
+        />
+        <CustomButton
+          className="flex-1"
+          isTest
+          btnText="Test app"
+          onPress={() => router.navigate("/(root)/(tabs)/home")}
+        />
+      </View>
       <TouchableOpacity
         className="self-center py-5 mb-10"
         onPress={() => router.navigate("/(onboarding)/sign-in")}>
