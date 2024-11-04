@@ -43,7 +43,7 @@ const SignUp = () => {
       Alert.alert(error.message);
     } else {
       setIsModalVisible(false);
-      router.navigate("/(root)");
+      router.navigate("/(onboarding)/sign-in");
     }
   };
 

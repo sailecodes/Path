@@ -31,25 +31,20 @@ const CustomButton = ({
       <TouchableOpacity
         onPress={onPress}
         className={`flex-1 flex-row justify-center items-center border rounded-lg
-        ${
-          isPrimary
-            ? "bg-blue-500 border-blue-500 shadow-md shadow-blue-500/30"
-            : "bg-neutral-100 border-neutral-200"
-        }
+        ${isPrimary && "bg-blue-500 border-blue-500 shadow-md shadow-blue-500/30"}
         ${isVerification && "bg-green-500 border-green-500 shadow-md shadow-green-500/30"}
+        ${!isPrimary && !isVerification && "bg-neutral-100 border-neutral-200"}
         `}>
         {imgSrc && (
           <Image
             className="w-[30] h-[30]"
             source={imgSrc}
-            // resizeMode="contain"
           />
         )}
         {btnText && (
           <Text
-            className={`font-JakartaBold text-xl ${
-              (isPrimary || isVerification) && "text-neutral-100"
-            }`}>
+            className={`font-JakartaBold text-xl
+              ${(isPrimary || isVerification) && "text-neutral-100"}`}>
             {btnText}
           </Text>
         )}

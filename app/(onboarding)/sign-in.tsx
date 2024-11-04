@@ -1,14 +1,25 @@
 import { useState } from "react";
-import { KeyboardAvoidingView, Platform, Text, TouchableOpacity, View } from "react-native";
+import { Alert, KeyboardAvoidingView, Platform, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import CustomInput from "@/components/CustomInput";
 import CustomButton from "@/components/CustomButton";
 import { icons } from "@/constants/icons";
+import { supabase } from "@/lib/supabase";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  async function handleSignIn() {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) Alert.alert(error.message);
+    else router.navigate("/(root)");
+  }
 
   return (
     <SafeAreaView className="flex-1 bg-neutral-100 pt-5">
@@ -35,7 +46,8 @@ const SignIn = () => {
       <CustomButton
         className="mb-5 mx-5"
         isPrimary
-        btnText="Sign up"
+        btnText="Sign in"
+        onPress={handleSignIn}
       />
       <TouchableOpacity
         className="self-center py-5 mb-10"
