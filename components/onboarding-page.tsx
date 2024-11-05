@@ -14,7 +14,7 @@ const OnboardingPage = ({ isFirstPage, primaryText, secondaryText }: OnboardingP
       <Text
         className={`${
           isFirstPage
-            ? "font-JakartaBold text-blue-600 text-6xl tracking-[-3px]"
+            ? "font-JakartaBold text-blue-500 text-6xl tracking-[-3px]"
             : "font-JakartaSemiBold text-neutral-800 text-4xl text-neutral-text-center"
         }`}>
         {primaryText}

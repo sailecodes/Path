@@ -1,11 +1,33 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { Text, TextProps } from "react-native";
 
-const CustomText = () => {
+type CustomTextProps = TextProps & {
+  className?: string;
+  hasCustomColor?: boolean;
+  isSubText?: boolean;
+  isSubHeading?: boolean;
+  isMainHeading?: boolean;
+  children: React.ReactNode;
+};
+
+const CustomText = ({
+  className,
+  hasCustomColor,
+  isSubText,
+  isSubHeading,
+  isMainHeading,
+  children,
+}: CustomTextProps) => {
   return (
-    <View>
-      <Text>CustomText</Text>
-    </View>
+    <Text
+      className={`text-neutral-800
+        ${isSubText && "text-sm"}
+        ${!hasCustomColor && "text-neutral-800"}
+        ${isSubHeading && "text-xl"}
+        ${isMainHeading && "text-2xl"}
+        ${className}
+    `}>
+      {children}
+    </Text>
   );
 };
 
