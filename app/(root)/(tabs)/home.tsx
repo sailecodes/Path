@@ -6,10 +6,10 @@ const Home = () => {
   return (
     <SafeAreaView className="bg-green-200 flex-1">
       <CustomInput
-        className="flex mb-10"
-        placeholder="Search"
+        className="flex mb-5"
+        placeholder="Placeholder"
       />
-      <View className="flex-row mb-10 gap-5">
+      <View className="flex-row px-5 mb-5 gap-5">
         <TouchableOpacity className="bg-red-300 w-[70] h-[30] p-5 rounded-lg">
           <Text className="text-neutral-800 font-JakartaMedium">Hello</Text>
         </TouchableOpacity>
@@ -22,40 +22,31 @@ const Home = () => {
       </View>
       <ScrollView>
         <View className="bg-red-300 gap-5">
-          <View className="bg-yellow-300 h-[175] mx-5 p-5 rounded-lg">
+          <View className="bg-yellow-300 mx-5 p-5 rounded-lg">
             <Text className="text-neutral-800 font-JakartaSemiBold text-2xl mb-2">
               View medical history
             </Text>
             <Text className="text-neutral-800 font-JakartaMedium text-lg">
-              See summaries from past visits and consultations, an overview of all diagnosed
-              conditions, test results, vaccination records, and more
+              See summaries from past visits, an overview of all diagnosed conditions, test results,
+              vaccination records, and more
             </Text>
           </View>
-          <View className="bg-yellow-300 h-[175] mx-5 p-5 rounded-lg">
+          <View className="bg-yellow-300 mx-5 p-5 rounded-lg">
             <Text className="text-neutral-800 font-JakartaSemiBold text-2xl mb-2">
               Make an appointment
             </Text>
             <Text className="text-neutral-800 font-JakartaMedium text-lg">
-              Create an appointment with your doctor to ensure your health and medical record is
+              Set up an appointment with your doctor to ensure your health and medical record is
               up-to-date
             </Text>
           </View>
-          <View className="bg-yellow-300 h-[175] mx-5 p-5 rounded-lg">
+          <View className="bg-yellow-300 mx-5 p-5 rounded-lg">
             <Text className="text-neutral-800 font-JakartaSemiBold text-2xl mb-2">
-              Make an appointment
+              Order from a pharmacy
             </Text>
             <Text className="text-neutral-800 font-JakartaMedium text-lg">
-              Create an appointment with your doctor to ensure your health and medical record is
-              up-to-date
-            </Text>
-          </View>
-          <View className="bg-yellow-300 h-[175] mx-5 p-5 rounded-lg">
-            <Text className="text-neutral-800 font-JakartaSemiBold text-2xl mb-2">
-              Make an appointment
-            </Text>
-            <Text className="text-neutral-800 font-JakartaMedium text-lg">
-              Create an appointment with your doctor to ensure your health and medical record is
-              up-to-date
+              Purchase medications and health essentials from a preferred pharmacy for pickup or
+              delivery
             </Text>
           </View>
         </View>

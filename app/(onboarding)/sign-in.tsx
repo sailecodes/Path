@@ -1,25 +1,44 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Alert, KeyboardAvoidingView, Platform, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
+import { useSignIn } from "@clerk/clerk-expo";
 import CustomInput from "@/components/custom-input";
 import CustomButton from "@/components/custom-button";
 import { icons } from "@/constants/icons";
-import { supabase } from "@/lib/supabase";
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [signInForm, setSignInForm] = useState({
+    email: "",
+    password: "",
+  });
+  const { signIn, setActive, isLoaded } = useSignIn();
 
-  async function handleSignIn() {
-    const { error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
+  const handleSignIn = useCallback(async () => {
+    if (!isLoaded) return;
 
-    if (error) Alert.alert(error.message);
-    else router.navigate("/(root)/(tabs)/home");
-  }
+    try {
+      const signInAttempt = await signIn.create({
+        identifier: signInForm.email,
+        password: signInForm.password,
+      });
+
+      if (signInAttempt.status === "complete") {
+        await setActive({ session: signInAttempt.createdSessionId });
+
+        setSignInForm({
+          email: "",
+          password: "",
+        });
+
+        router.navigate("/(root)/(tabs)/home");
+      } else {
+        Alert.alert("Failed", "Something went wrong. Please try again.");
+      }
+    } catch (err: any) {
+      Alert.alert("Error", err.errors[0].longMessage);
+    }
+  }, [isLoaded, signInForm]);
 
   return (
     <SafeAreaView className="flex-1 bg-neutral-100 pt-5">
@@ -33,14 +52,14 @@ const SignIn = () => {
         <CustomInput
           placeholder="Email"
           keyboardType="email-address"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
+          value={signInForm.email}
+          onChangeText={(text) => setSignInForm({ ...signInForm, email: text })}
         />
         <CustomInput
           placeholder="Password"
           secureTextEntry
-          value={password}
-          onChangeText={(text) => setPassword(text)}
+          value={signInForm.password}
+          onChangeText={(text) => setSignInForm({ ...signInForm, password: text })}
         />
       </KeyboardAvoidingView>
       <CustomButton

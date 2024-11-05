@@ -1,51 +1,70 @@
 import ReactNativeModal from "react-native-modal";
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Alert, KeyboardAvoidingView, Platform, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import { router } from "expo-router";
+import { useSignUp } from "@clerk/clerk-expo";
 import CustomInput from "@/components/custom-input";
 import CustomButton from "@/components/custom-button";
 import { icons } from "@/constants/icons";
-import { supabase } from "@/lib/supabase";
 
 const SignUp = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [signUpForm, setSignUpForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
   const [token, setToken] = useState("");
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { isLoaded, signUp, setActive } = useSignUp();
 
   const handleSignUp = async () => {
-    const { error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-    });
+    if (!isLoaded) return;
 
-    if (error) Alert.alert(error.message);
-    else setIsModalVisible(true);
-  };
+    try {
+      await signUp.create({
+        firstName: signUpForm.firstName,
+        lastName: signUpForm.lastName,
+        emailAddress: signUpForm.email,
+        password: signUpForm.password,
+      });
 
-  const handleResendOtp = async () => {
-    const { error } = await supabase.auth.resend({ email, type: "signup" });
+      await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
 
-    if (error) Alert.alert(error.message);
+      setIsModalVisible(true);
+    } catch (err: any) {
+      Alert.alert("Error", err.errors[0].longMessage);
+    }
   };
 
   const handleVerifyOtp = async () => {
-    const { error } = await supabase.auth.verifyOtp({
-      email,
-      token,
-      type: "email",
-    });
+    if (!isLoaded) return;
 
-    if (error) {
-      Alert.alert(error.message);
-    } else {
-      setIsModalVisible(false);
-      router.navigate("/(onboarding)/sign-in");
+    try {
+      const signUpAttempt = await signUp.attemptEmailAddressVerification({ code: token });
+
+      if (signUpAttempt.status === "complete") {
+        await setActive({ session: signUpAttempt.createdSessionId });
+
+        setIsModalVisible(false);
+        setSignUpForm({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+        });
+
+        router.navigate("/(root)/(tabs)/home");
+      } else {
+        Alert.alert("Failed", "Something went wrong. Please try again.");
+      }
+    } catch (err: any) {
+      Alert.alert("Error", err.errors[0].longMessage);
     }
   };
+
+  const handleResendOtp = async () => {};
 
   return (
     <SafeAreaView className="flex-1 bg-neutral-100 pt-5">
@@ -55,39 +74,31 @@ const SignUp = () => {
       <Text className="text-neutral-800 font-JakartaSemiBold text-3xl mx-5 mb-10">
         Create your account
       </Text>
-      <KeyboardAvoidingView
-        className="gap-5 mb-10"
-        behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      <View className="gap-5 mb-10">
         <CustomInput
           placeholder="First name"
-          value={firstName}
-          onChangeText={(text) => setFirstName(text)}
+          value={signUpForm.firstName}
+          onChangeText={(text) => setSignUpForm({ ...signUpForm, firstName: text })}
         />
         <CustomInput
           placeholder="Last name"
-          value={lastName}
-          onChangeText={(text) => setLastName(text)}
+          value={signUpForm.lastName}
+          onChangeText={(text) => setSignUpForm({ ...signUpForm, lastName: text })}
         />
         <CustomInput
           placeholder="Email"
           keyboardType="email-address"
-          value={email}
-          onChangeText={(text) => setEmail(text)}
+          value={signUpForm.email}
+          onChangeText={(text) => setSignUpForm({ ...signUpForm, email: text })}
         />
         <CustomInput
           placeholder="Password"
           secureTextEntry
-          value={password}
-          onChangeText={(text) => setPassword(text)}
+          value={signUpForm.password}
+          onChangeText={(text) => setSignUpForm({ ...signUpForm, password: text })}
         />
-      </KeyboardAvoidingView>
+      </View>
       <View className="flex-row justify-evenly gap-5 mb-5 mx-5">
-        {/* <CustomButton
-          className="mb-5 mx-5"
-          isPrimary
-          btnText="Sign up"
-          onPress={handleSignUp}
-        /> */}
         <CustomButton
           className="flex-1"
           isPrimary
@@ -147,7 +158,7 @@ const SignUp = () => {
             <Text className="text-neutral-500 font-JakartaMedium text-lg">
               Didn't receive a code?
             </Text>
-            <TouchableOpacity onPress={handleResendOtp}>
+            <TouchableOpacity onPress={() => console.log("Resending OTP")}>
               <Text className="text-green-500 font-JakartaSemiBold text-lg"> Resend</Text>
             </TouchableOpacity>
           </View>

@@ -1,9 +1,18 @@
+import "react-native-reanimated";
+import "../global.css";
 import * as SplashScreen from "expo-splash-screen";
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
-import "react-native-reanimated";
-import "../global.css";
+import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
 import { useEffect } from "react";
+import { tokenCache } from "@/lib/clerk";
+
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
+
+if (!publishableKey)
+  throw new Error(
+    "Missing Publishable Key. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your .env"
+  );
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,20 +38,26 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack>
-      <Stack.Screen
-        name="(onboarding)"
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="(root)"
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="index"
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen name="+not-found" />
-    </Stack>
+    <ClerkProvider
+      publishableKey={publishableKey}
+      tokenCache={tokenCache}>
+      <ClerkLoaded>
+        <Stack>
+          <Stack.Screen
+            name="(onboarding)"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="(root)"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="index"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      </ClerkLoaded>
+    </ClerkProvider>
   );
 }
