@@ -1,4 +1,4 @@
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, ImageBackground, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomInput from "@/components/custom-input";
 import { icons } from "@/constants/icons";
@@ -108,20 +108,42 @@ const Home = () => {
           </Text>
 
           <View className="flex-row gap-[10] mb-3">
-            <TouchableOpacity className="bg-white flex-1 justify-center items-center h-[80] border-neutral-200 border rounded-lg">
-              <Text className="font-JakartaSemiBold text-lg">Exercises</Text>
+            <TouchableOpacity className="bg-white flex-1 justify-center items-center h-[80] border-neutral-200 border rounded-lg overflow-hidden">
+              <Image
+                source={icons.exercise}
+                className="w-[75] h-[75] left-10"
+                resizeMode="cover"
+              />
+              <Text className="absolute left-4 font-JakartaSemiBold text-lg">Exercises</Text>
             </TouchableOpacity>
-            <TouchableOpacity className="bg-white flex-1 justify-center items-center h-[80] border-neutral-200 border rounded-lg">
-              <Text className="font-JakartaSemiBold text-lg">Vaccines</Text>
+            <TouchableOpacity className="bg-white flex-1 justify-center items-center h-[80] border-neutral-200 border rounded-lg overflow-hidden">
+              <Image
+                source={icons.doctors}
+                className="w-[75] h-[75] left-10"
+                resizeMode="cover"
+              />
+              <Text className="absolute left-4 font-JakartaSemiBold text-lg">Vaccines</Text>
             </TouchableOpacity>
           </View>
 
           <View className="flex-row gap-[10]">
             <TouchableOpacity className="bg-white flex-1 justify-center items-center h-[80] border-neutral-200 border rounded-lg">
-              <Text className="font-JakartaSemiBold text-lg">Nutrition</Text>
+              <Image
+                source={icons.shopping}
+                className="w-[75] h-[75] left-10"
+                resizeMode="cover"
+              />
+              <Text className="absolute left-4 font-JakartaSemiBold text-lg">Nutrition</Text>
             </TouchableOpacity>
             <TouchableOpacity className="bg-white flex-1 justify-center items-center h-[80] border-neutral-200 border rounded-lg">
-              <Text className="font-JakartaSemiBold text-lg">Mental Health</Text>
+              <Image
+                source={icons.mentalHealth}
+                className="w-[75] h-[75] left-10"
+                resizeMode="cover"
+              />
+              <Text className="absolute left-4 font-JakartaSemiBold text-lg w-[60]">
+                Mental Health
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

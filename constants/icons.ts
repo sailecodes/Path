@@ -6,9 +6,10 @@ import home from "../assets/icons/home.png";
 import profile from "../assets/icons/profile.png";
 import wallet from "../assets/icons/wallet.png";
 import search from "../assets/icons/search.png";
-import dumbbell from "../assets/icons/dumbbell.png";
-import juice from "../assets/icons/juice.png";
-import pin from "../assets/icons/pin.png";
+import exercise from "../assets/icons/exercise.png";
+import mentalHealth from "../assets/icons/mental-health.png";
+import doctors from "../assets/icons/doctors.png";
+import shopping from "../assets/icons/shopping.png";
 
 export const icons = {
   facebook,
@@ -19,7 +20,8 @@ export const icons = {
   profile,
   wallet,
   search,
-  dumbbell,
-  juice,
-  pin,
+  exercise,
+  mentalHealth,
+  doctors,
+  shopping,
 };
