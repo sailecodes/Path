@@ -8,6 +8,7 @@ import wallet from "../assets/icons/wallet.png";
 import search from "../assets/icons/search.png";
 import dumbbell from "../assets/icons/dumbbell.png";
 import juice from "../assets/icons/juice.png";
+import pin from "../assets/icons/pin.png";
 
 export const icons = {
   facebook,
@@ -20,4 +21,5 @@ export const icons = {
   search,
   dumbbell,
   juice,
+  pin,
 };
