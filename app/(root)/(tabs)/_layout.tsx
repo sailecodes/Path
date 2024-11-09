@@ -58,13 +58,13 @@ const Layout = () => {
         }}
       />
       <Tabs.Screen
-        name="history"
+        name="records"
         options={{
-          title: "History",
+          title: "Records",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
-              text="History"
+              text="Records"
               source={icons.folder}
               focused={focused}
             />

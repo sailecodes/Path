@@ -54,7 +54,7 @@ const Home = () => {
       <ScrollView
         className="px-5"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 90 }}>
+        contentContainerStyle={{ paddingBottom: 100 }}>
         {/* Main modules */}
         <View className="gap-[10px] mb-5">
           <TouchableOpacity className="justify-center bg-white h-[130px] px-5 border-neutral-200 border rounded-lg">
