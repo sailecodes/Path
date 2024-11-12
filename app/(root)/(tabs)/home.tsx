@@ -1,6 +1,8 @@
 import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons } from "@/constants/icons";
+import MainModule from "@/components/main-module";
+import SubModule from "@/components/sub-module";
 
 const Home = () => {
   const handleSignOut = async () => {};
@@ -8,7 +10,6 @@ const Home = () => {
   return (
     <SafeAreaView
       className="flex-1"
-      style={{ paddingBottom: 10 }}
       edges={["top"]}>
       {/* Search bar and sign out button */}
       <View className="flex-row items-center h-[60px] gap-5 mb-5 mx-5">
@@ -33,20 +34,23 @@ const Home = () => {
       </View>
 
       {/* Sub modules */}
-      <View className="h-[45px] mb-5 px-5">
+      <View className="h-[45px] mb-5">
         <ScrollView
           horizontal
-          contentContainerStyle={{ flexDirection: "row", gap: 10 }}
+          contentContainerStyle={{ flexDirection: "row", gap: 10, paddingHorizontal: 17 }}
           showsHorizontalScrollIndicator={false}>
-          <TouchableOpacity className="justify-center bg-white px-5 border-neutral-200 border rounded-lg">
-            <Text className="text-neutral-800 font-JakartaBold">Call your doctor</Text>
-          </TouchableOpacity>
-          <TouchableOpacity className="justify-center bg-white px-5 border-neutral-200 border rounded-lg">
-            <Text className="text-neutral-800 font-JakartaBold">Get vaccinations</Text>
-          </TouchableOpacity>
-          <TouchableOpacity className="justify-center bg-white px-5 border-neutral-200 border rounded-lg">
-            <Text className="text-neutral-800 font-JakartaBold">Learn healthy diets</Text>
-          </TouchableOpacity>
+          <SubModule
+            text="Call your doctor"
+            onPress={() => {}}
+          />
+          <SubModule
+            text="Get vaccinations"
+            onPress={() => {}}
+          />
+          <SubModule
+            text="Learn healthy diets"
+            onPress={() => {}}
+          />
         </ScrollView>
       </View>
 
@@ -54,60 +58,30 @@ const Home = () => {
       <ScrollView
         className="px-5"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 100 }}>
+        contentContainerStyle={{ paddingBottom: 110 }}>
         {/* Main modules */}
         <View className="gap-[10px] mb-5">
-          <TouchableOpacity className="justify-center bg-white h-[130px] px-5 border-neutral-200 border rounded-lg">
-            <View className="flex-row gap-[10px] items-center mb-3">
-              <Image
-                source={icons.folder}
-                className="w-8 h-8"
-                resizeMode="contain"
-                tintColor="#3b82f6"
-              />
-              <Text className="text-neutral-800 font-JakartaSemiBold text-xl">
-                View medical history
-              </Text>
-            </View>
-            <Text className="text-neutral-500 font-JakartaMedium">
-              See summaries from past visits, an overview of all diagnosed conditions, test results,
-              vaccination records, and more
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity className="justify-center bg-white h-[130px] px-5 border-neutral-200 border rounded-lg">
-            <View className="flex-row gap-[10px] items-center mb-3">
-              <Image
-                source={icons.calendar}
-                className="w-8 h-8"
-                resizeMode="contain"
-                tintColor="#3b82f6"
-              />
-              <Text className="text-neutral-800 font-JakartaSemiBold text-xl">
-                Make an appointment
-              </Text>
-            </View>
-            <Text className="text-neutral-500 font-JakartaMedium">
-              Book an appointment with your doctor to ensure your health and medical record is
-              up-to-date
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity className="justify-center bg-white h-[130px] px-5 border-neutral-200 border rounded-lg">
-            <View className="flex-row gap-[10px] items-center mb-3">
-              <Image
-                source={icons.wallet}
-                className="w-8 h-8"
-                resizeMode="contain"
-                tintColor="#3b82f6"
-              />
-              <Text className="text-neutral-800 font-JakartaSemiBold text-xl">
-                Order from a pharmacy
-              </Text>
-            </View>
-            <Text className="text-neutral-500 font-JakartaMedium">
-              Purchase medications and health essentials from a preferred pharmacy for pickup or
-              delivery
-            </Text>
-          </TouchableOpacity>
+          <MainModule
+            iconSrc={icons.folder}
+            header="View medical history"
+            description="See summaries from past visits, an overview of all diagnosed conditions, test results,
+              vaccination records, and more"
+            onPress={() => {}}
+          />
+          <MainModule
+            iconSrc={icons.folder}
+            header="Make an appointment"
+            description="Book an appointment with your doctor to ensure your health and medical record is
+              up-to-date"
+            onPress={() => {}}
+          />
+          <MainModule
+            iconSrc={icons.folder}
+            header="Order from a pharmacy"
+            description="Purchase medications and health essentials from a preferred pharmacy for pickup or
+              delivery"
+            onPress={() => {}}
+          />
         </View>
 
         {/* Health recommendations */}
