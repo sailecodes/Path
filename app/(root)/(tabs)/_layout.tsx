@@ -31,14 +31,12 @@ const Layout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#3b82f6",
-        tabBarInactiveTintColor: "#737373",
         tabBarShowLabel: false,
         tabBarStyle: {
           position: "absolute",
-          paddingTop: 30,
+          height: 90,
+          paddingTop: 20,
           marginHorizontal: 5,
-          marginBottom: 10,
           borderTopLeftRadius: 40,
           borderTopRightRadius: 40,
         },
@@ -46,7 +44,6 @@ const Layout = () => {
       <Tabs.Screen
         name="home"
         options={{
-          title: "Home",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
@@ -60,7 +57,6 @@ const Layout = () => {
       <Tabs.Screen
         name="records"
         options={{
-          title: "Records",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
@@ -74,7 +70,6 @@ const Layout = () => {
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Profile",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabBarIcon

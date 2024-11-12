@@ -6,10 +6,12 @@ import home from "../assets/icons/home.png";
 import profile from "../assets/icons/profile.png";
 import wallet from "../assets/icons/wallet.png";
 import search from "../assets/icons/search.png";
-import exercise from "../assets/icons/exercise.png";
-import mentalHealth from "../assets/icons/mental-health.png";
-import doctors from "../assets/icons/doctors.png";
-import shopping from "../assets/icons/shopping.png";
+import lock from "../assets/icons/lock.png";
+import speechBubble from "../assets/icons/speech-bubble.png";
+import exercise from "../assets/images/exercise.png";
+import mentalHealth from "../assets/images/mental-health.png";
+import doctors from "../assets/images/doctors.png";
+import shopping from "../assets/images/shopping.png";
 
 export const icons = {
   facebook,
@@ -20,6 +22,11 @@ export const icons = {
   profile,
   wallet,
   search,
+  lock,
+  speechBubble,
+};
+
+export const images = {
   exercise,
   mentalHealth,
   doctors,

@@ -1,8 +1,8 @@
 import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { icons } from "@/constants/icons";
 import MainModule from "@/components/main-module";
 import SubModule from "@/components/sub-module";
+import { icons, images } from "@/constants/icons";
 
 const Home = () => {
   const handleSignOut = async () => {};
@@ -69,14 +69,14 @@ const Home = () => {
             onPress={() => {}}
           />
           <MainModule
-            iconSrc={icons.folder}
+            iconSrc={icons.calendar}
             header="Make an appointment"
             description="Book an appointment with your doctor to ensure your health and medical record is
               up-to-date"
             onPress={() => {}}
           />
           <MainModule
-            iconSrc={icons.folder}
+            iconSrc={icons.wallet}
             header="Order from a pharmacy"
             description="Purchase medications and health essentials from a preferred pharmacy for pickup or
               delivery"
@@ -94,7 +94,7 @@ const Home = () => {
             <TouchableOpacity className="bg-white flex-1 flex-row justify-between items-center h-[80] px-5 border-neutral-200 border rounded-lg overflow-hidden">
               <Text className="font-JakartaSemiBold text-lg">Exercises</Text>
               <Image
-                source={icons.exercise}
+                source={images.exercise}
                 className="w-[75] h-[75]"
                 resizeMode="cover"
               />
@@ -102,7 +102,7 @@ const Home = () => {
             <TouchableOpacity className="bg-white flex-1 flex-row justify-between items-center h-[80] px-5 border-neutral-200 border rounded-lg overflow-hidden">
               <Text className="font-JakartaSemiBold text-lg">Vaccines</Text>
               <Image
-                source={icons.doctors}
+                source={images.doctors}
                 className="w-[75] h-[75]"
                 resizeMode="cover"
               />
@@ -113,7 +113,7 @@ const Home = () => {
             <TouchableOpacity className="bg-white flex-1 flex-row justify-between items-center h-[80] px-5 border-neutral-200 border rounded-lg overflow-hidden">
               <Text className="font-JakartaSemiBold text-lg">Nutrition</Text>
               <Image
-                source={icons.shopping}
+                source={images.shopping}
                 className="w-[75] h-[75]"
                 resizeMode="cover"
               />
@@ -121,7 +121,7 @@ const Home = () => {
             <TouchableOpacity className="bg-white flex-1 flex-row justify-between items-center h-[80] px-5 border-neutral-200 border rounded-lg overflow-hidden">
               <Text className="font-JakartaSemiBold text-lg w-[60]">Mental Health</Text>
               <Image
-                source={icons.mentalHealth}
+                source={images.mentalHealth}
                 className="w-[75] h-[75]"
                 resizeMode="cover"
               />
