@@ -1,12 +1,30 @@
-import { Image, TextInput, TouchableOpacity } from "react-native";
+import { Image, ScrollView, TextInput, TouchableOpacity } from "react-native";
 import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons } from "@/constants/icons";
-import pfp from "@/assets/images/pfp.jpg";
+
+import { ImageSourcePropType } from "react-native";
+
+const ProfileModule = ({ source, text }: { source: ImageSourcePropType; text: string }) => {
+  return (
+    <View className="gap-[10px]">
+      <TouchableOpacity className="bg-white flex-row items-center gap-[10px] h-[65px] border-neutral-200 border rounded-lg px-5">
+        <Image
+          className="w-8 h-8"
+          source={source}
+          tintColor="#3b82f6"
+        />
+        <Text className="text-neutral-800 font-JakartaSemiBold text-xl">{text}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const Profile = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      className="flex-1"
+      edges={["top"]}>
       {/* Search bar */}
       <View className="flex-row gap-4 items-center bg-blue-100 h-[60px] rounded-lg pl-5 mb-5 mx-5">
         <Image
@@ -22,70 +40,55 @@ const Profile = () => {
         />
       </View>
 
-      <View>
-        <Text>Elias Roman</Text>
-      </View>
-      <View className="px-5 gap-[10px]">
-        <TouchableOpacity className="bg-white flex-row items-center gap-[10px] h-[65px] rounded-lg px-5">
-          <Image
-            className="w-8 h-8"
-            source={icons.profile}
-            tintColor="#3b82f6"
-          />
-          <Text className="text-neutral-800 font-JakartaMedium text-xl">Account Information</Text>
-        </TouchableOpacity>
+      <ScrollView contentContainerStyle={{ paddingBottom: 110 }}>
+        <View className="px-5 mb-5">
+          <Text className="text-neutral-800 font-JakartaBold text-2xl mb-5">Account</Text>
+          <View className="gap-[10px]">
+            <ProfileModule
+              source={icons.profile}
+              text="Personal details"
+            />
+            <ProfileModule
+              source={icons.profile}
+              text="Password and security"
+            />
+            <ProfileModule
+              source={icons.profile}
+              text="Payment method"
+            />
+          </View>
+        </View>
 
-        <TouchableOpacity className="bg-white flex-row items-center gap-[10px] h-[65px] rounded-lg px-5">
-          <Image
-            className="w-8 h-8"
-            source={icons.profile}
-            tintColor="#3b82f6"
-          />
-          <Text className="text-neutral-800 font-JakartaMedium text-xl">Appointments</Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="bg-white flex-row items-center gap-[10px] h-[65px] rounded-lg px-5">
-          <Image
-            className="w-8 h-8"
-            source={icons.profile}
-            tintColor="#3b82f6"
-          />
-          <Text className="text-neutral-800 font-JakartaMedium text-xl">Pharmacy orders</Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="bg-white flex-row items-center gap-[10px] h-[65px] rounded-lg px-5">
-          <Image
-            className="w-8 h-8"
-            source={icons.profile}
-            tintColor="#3b82f6"
-          />
-          <Text className="text-neutral-800 font-JakartaMedium text-xl">Payment method</Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="bg-white flex-row items-center gap-[10px] h-[65px] rounded-lg px-5">
-          <Image
-            className="w-8 h-8"
-            source={icons.lock}
-            tintColor="#3b82f6"
-          />
-          <Text className="text-neutral-800 font-JakartaMedium text-xl">Password and security</Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="bg-white flex-row items-center gap-[10px] h-[65px] rounded-lg px-5">
-          <Image
-            className="w-8 h-8"
-            source={icons.speechBubble}
-            tintColor="#3b82f6"
-          />
-          <Text className="text-neutral-800 font-JakartaMedium text-xl">
-            Language and accessibility
+        <View className="px-5 mb-5">
+          <Text className="text-neutral-800 font-JakartaBold text-2xl mb-5">Section</Text>
+          <View className="gap-[10px]">
+            <ProfileModule
+              source={icons.profile}
+              text="Appointments"
+            />
+            <ProfileModule
+              source={icons.profile}
+              text="Pharmacy orders"
+            />
+          </View>
+        </View>
+
+        <View className="px-5">
+          <Text className="text-neutral-800 font-JakartaBold text-2xl mb-5">
+            More info and support
           </Text>
-        </TouchableOpacity>
-        <TouchableOpacity className="bg-white flex-row items-center gap-[10px] h-[65px] rounded-lg px-5">
-          <Image
-            className="w-8 h-8"
-            source={icons.profile}
-            tintColor="#3b82f6"
-          />
-          <Text className="text-neutral-800 font-JakartaMedium text-xl">Terms and conditions</Text>
-        </TouchableOpacity>
-      </View>
+          <View className="gap-[10px]">
+            <ProfileModule
+              source={icons.profile}
+              text="Language and accessibility"
+            />
+            <ProfileModule
+              source={icons.profile}
+              text="Terms and conditions"
+            />
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
