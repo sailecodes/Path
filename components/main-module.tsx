@@ -19,7 +19,7 @@ const MainModule = ({ iconSrc, header, description, onPress }: MainModuleProps) 
     <TouchableOpacity
       className="justify-center bg-white h-[130px] px-5 border-neutral-200 border rounded-lg"
       onPress={onPress}>
-      <View className="flex-row gap-[10px] items-center mb-3">
+      <View className="flex-row items-center gap-[10px] mb-3">
         <Image
           source={iconSrc}
           className="w-8 h-8"
